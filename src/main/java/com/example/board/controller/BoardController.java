@@ -1,16 +1,23 @@
 package com.example.board.controller;
 
+import com.example.board.dto.LoginInfo;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpSession;
 
 
 @Controller
 public class BoardController{
     //localhost:8080 요청 시 출력
     @GetMapping("/")
-    public String list(){
+    public String list(HttpSession httpSession, Model model){ // Httpsession, model은 스프링이 자동으로 넣어줌
+        //게시물 정보를 읽어와 페이징 처리
+        LoginInfo loginInfo = (LoginInfo)httpSession.getAttribute("loginInfo");
+        model.addAttribute("LoginInfo", loginInfo);
         return "list";
 
     }
@@ -31,11 +38,7 @@ public class BoardController{
             @RequestParam("title") String title,
             @RequestParam("content")String content
     ){
-//        로그인한 사람만 사용 가능해야한다.
-//
-//        로그인 하지 않았다면 리스트 보기로 자동이동
-//
-//        세션에서 로그인한 정보를 읽어들인다.
+
         return "redirect:/";
     }
 }

@@ -18,4 +18,11 @@ public class UserService {
         return user;
     }
 
+    @Transactional
+    public User getUser(String email){
+        return userDao.getUser(email);
+    }
+
+
+
 }
