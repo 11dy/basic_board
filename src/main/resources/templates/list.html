@@ -17,7 +17,7 @@
 
     <div class="login-info">
         <div class="container">
-          <span class="login-info_user" th:if="${l oginInfo != null}">
+          <span class="login-info_user" th:if="${loginInfo != null}">
             <span th:text="${loginInfo.name}"></span>
           </span>
             <span class="login-info_logout" th:if="${loginInfo != null}">
@@ -40,7 +40,7 @@
                 <tr>
                     <th scope="col" class="th-num">번호</th>
                     <th scope="col" class="th-title">제목</th>
-                    <th scope="col" class="th-viewcnt">조회수</th>
+                    <th scope="col" class="th-viewCnt">조회수</th>
                     <th scope="col" class="th-name">작성자</th>
                     <th scope="col" class="th-date">등록일</th>
                 </tr>

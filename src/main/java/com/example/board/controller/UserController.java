@@ -28,7 +28,7 @@ public class UserController {
     public String userReg(
             @RequestParam("name") String name,
             @RequestParam("email") String email,
-            @RequestParam(value = "password") String password
+            @RequestParam("password") String password
     ){
         System.out.println("name: " + name);
         System.out.println("email: " + email);
@@ -77,7 +77,7 @@ public class UserController {
                 throw new RuntimeException("암호가 다릅니다.");
             }
         }catch(Exception ex){
-            return "redirect: /loginform?error=true";
+            return "redirect:/loginform?error=true";
         }
         return "redirect:/";
     }

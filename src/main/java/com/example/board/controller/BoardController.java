@@ -21,9 +21,9 @@ public class BoardController{
     private final BoardService boardService;
     //localhost:8080 요청 시 출력
     @GetMapping("/")
-    public String list(@RequestParam(name="page", defaultValue = "1") int page, HttpSession httpSession, Model model){ // Httpsession, model은 스프링이 자동으로 넣어줌
+    public String list(@RequestParam(name="page", defaultValue = "1") int page, HttpSession session, Model model){ // Httpsession, model은 스프링이 자동으로 넣어줌
         //게시물 정보를 읽어와 페이징 처리
-        LoginInfo loginInfo = (LoginInfo)httpSession.getAttribute("loginInfo");
+        LoginInfo loginInfo = (LoginInfo)session.getAttribute("loginInfo");
         model.addAttribute("LoginInfo", loginInfo);
 
         int totalCount = boardService.getTotalCount(); // 전체 건수 가져오기
@@ -53,7 +53,7 @@ public class BoardController{
     public String writeForm(HttpSession session, Model model){
         LoginInfo loginInfo = (LoginInfo)session.getAttribute("loginInfo");
         if(loginInfo == null){
-            return "redirect: /loginform";
+            return "redirect:/loginform";
         }
         model.addAttribute("LoginInfo", loginInfo);
 
